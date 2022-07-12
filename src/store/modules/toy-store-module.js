@@ -18,7 +18,7 @@ export default {
     },
     saveToy(state, {toy}){
       const idx = state.toys.findIndex(t => t._id === toy._id)
-      if (idx !== -1) state.toys.splice(idx,1)
+      if (idx !== -1) state.toys.splice(idx,1,toy)
       else state.toys.push(toy)
     }
   },
