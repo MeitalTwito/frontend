@@ -1,7 +1,9 @@
 <template>
     <section class="toy-app">
         <toy-filter @setFilter="setFilter" />
-        <toy-list v-if="toys" :toys="toys" />
+        <button @click="goToAddToy">Add New Toy</button>
+        <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" />
+        <router-view/>
     </section>
 </template>
 
@@ -20,6 +22,12 @@ export default {
     methods: {
         setFilter(filterBy) {
             this.$store.commit({type: 'setFilter', filterBy})
+        },
+        removeToy(toyId){
+            this.$store.dispatch({type:'removeToy', toyId})
+        },
+        goToAddToy(){
+            this.$router.push('/toy/edit')
         }
     },
     components: {

@@ -1,6 +1,6 @@
 <template>
   <ul class="toy-list">
-    <toy-preview v-for="toy in toys" :toy="toy" :key="toy.id" />
+    <toy-preview @removeToy="$emit('removeToy', $event)" v-for="toy in toys" :toy="toy" :key="toy.id" />
   </ul>
 </template>
 

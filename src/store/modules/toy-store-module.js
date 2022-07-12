@@ -11,7 +11,15 @@ export default {
     },
     setFilter(state, { filterBy }) {
       state.filterBy = filterBy
-      console.log(state.filterBy);
+    },
+    removeToy(state, {toyId}){
+      const idx = state.toys.findIndex(toy => toy._id === toyId)
+      state.toys.splice(idx,1)
+    },
+    saveToy(state, {toy}){
+      const idx = state.toys.findIndex(t => t._id === toy._id)
+      if (idx !== -1) state.toys.splice(idx,1)
+      else state.toys.push(toy)
     }
   },
   getters: {
@@ -57,6 +65,17 @@ export default {
     loadToys({ commit }) {
       toyService.query().then((toys) => {
         commit({ type: 'setToys', toys })
+      })
+    },
+    removeToy({commit}, {toyId}){
+      return toyService.remove(toyId)
+        .then(()=>{
+          commit({type:'removeToy', toyId})
+        })
+    },
+    saveToy({commit}, {toy}){
+      toyService.save(toy).then(toy => {
+        commit({type:'saveToy', toy})
       })
     }
   },

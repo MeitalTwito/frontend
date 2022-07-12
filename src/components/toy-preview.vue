@@ -6,6 +6,11 @@
         <div class="labels-holder"><span class="label" v-for="(label, index) in toy.labels" :key="label">{{label}}</span></div>
         <div>Added on: {{formatedDate}}</div>
         <div v-if="toy.inStock">In Stock</div>
+        <div class="btn-group">
+          <button @click="goToEdit">edit</button>
+          <button @click="goToDetails">details</button>
+          <button @click="removeToy(toy._id)">delete</button>
+        </div>
     </li>
 </template>
 
@@ -29,6 +34,15 @@ export default {
 
     },
     methods: {
+        removeToy(toyId){
+            this.$emit('removeToy', toyId)
+        },
+        goToEdit(){
+            this.$router.push(`/toy/edit/${this.toy._id}`)
+        },
+        goToDetails(){
+            this.$router.push(`/toy/${this.toy._id}`)
+        }
     },
 }
 </script>
