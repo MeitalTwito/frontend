@@ -37,6 +37,7 @@ export default {
 
       if(filterBy.label.length > 0 && filterBy.label[0] !== ''){
         filteredToys = filteredToys.filter(toy => filterBy.label.includes(...toy.labels))
+
       }
 
       if (filterBy.sortBy){

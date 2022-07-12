@@ -1,7 +1,8 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util-service.js';
+import axios from 'axios'
 
-
+const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/toy' : '//localhost:3000/api/toy';
 const KEY = 'toyDB';
 
 export const toyService = {
@@ -14,25 +15,39 @@ export const toyService = {
 
 _createToys()
 
-function query() {
-    return storageService.query(KEY)
+function query(filterBy) {
+    // return storageService.query(KEY)
+    return axios.get(BASE_URL, { params: filterBy })
+    .then (res => res.data)
 }
 
-function remove(id) {
-    return storageService.remove(KEY, id)
+function remove(toyId) {
+    // return storageService.remove(KEY, id)
+    return axios.delete(BASE_URL + toyId)
+    .then (res => res.data)
 }
 
-function getById(id) {
-    return storageService.get(KEY, id)
-    .then(toy => {
-        toy.reviews = _createreviews()
-        return toy
-    })
+function getById(toyId) {
+    return axios.get(BASE_URL + toyId)
+    .then (res => res.data)
+    // .then(toy => {
+    //     toy.reviews = _createreviews()
+    //     return toy
+    // })
 }
 
 function save(toy) {
-    const savedToy = (toy._id) ? storageService.put(KEY, toy) : storageService.post(KEY, toy)
-    return savedToy
+    // const savedToy = (toy._id) ? storageService.put(KEY, toy) : storageService.post(KEY, toy)
+    // return savedToy
+
+    if (toy._id) {
+        return axios.put(BASE_URL +toy._id, toy)
+        .then(res => res.data)
+    } else {
+      return axios.post(BASE_URL, toy)
+      .then(res => res.data)
+      .catch(err => err)
+    }
 }
 
 function getEmptyToy() {
