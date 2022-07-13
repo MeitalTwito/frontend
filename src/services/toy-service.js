@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util-service.js';
 import axios from 'axios'
 
-const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/toy' : '//localhost:3000/api/toy';
+const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/toy/' : '//localhost:3030/api/toy/';
 const KEY = 'toyDB';
 
 export const toyService = {
@@ -30,10 +30,10 @@ function remove(toyId) {
 function getById(toyId) {
     return axios.get(BASE_URL + toyId)
     .then (res => res.data)
-    // .then(toy => {
-    //     toy.reviews = _createreviews()
-    //     return toy
-    // })
+    .then(toy => {
+        toy.reviews = _createreviews()
+        return toy
+    })
 }
 
 function save(toy) {

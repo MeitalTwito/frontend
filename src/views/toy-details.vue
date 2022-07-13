@@ -19,6 +19,7 @@ export default {
     },
     methods: {
         close() {
+            this.toy = null
             this.$router.push('/toy')
         },
     },

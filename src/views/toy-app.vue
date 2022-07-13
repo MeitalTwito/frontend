@@ -1,9 +1,10 @@
 <template>
     <section class="toy-app">
-        <toy-filter @setFilter="setFilter" />
-        <button @click="goToAddToy">Add New Toy</button>
-        <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" />
         <router-view/>
+        <toy-filter @setFilter="setFilter" />
+        <div class="actions"><el-button @click="goToAddToy" type="primary" plain>Add New Toy</el-button></div>
+        <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" />
+        
     </section>
 </template>
 

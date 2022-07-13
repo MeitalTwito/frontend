@@ -5,11 +5,14 @@
         <span>{{formatedPrice}}</span>
         <div class="labels-holder"><span class="label" v-for="(label, index) in toy.labels" :key="label">{{label}}</span></div>
         <div>Added on: {{formatedDate}}</div>
-        <div v-if="toy.inStock">In Stock</div>
+        <div class="stock"><span :class="SetStockClass">{{stockMsg}}</span></div>
         <div class="btn-group">
-          <button @click="goToEdit">edit</button>
+          <el-button @click="goToEdit" type="primary" plain>Edit</el-button>
+          <el-button @click="goToDetails" type="info" plain>Details</el-button>
+          <el-button @click="removeToy(toy._id)" type="danger" plain>Delete</el-button>
+          <!-- <button @click="goToEdit">edit</button>
           <button @click="goToDetails">details</button>
-          <button @click="removeToy(toy._id)">delete</button>
+          <button @click="removeToy(toy._id)">delete</button> -->
         </div>
     </li>
 </template>
@@ -29,6 +32,15 @@ export default {
         formatedDate(){
             return new Date(this.toy.createdAt).toDateString()
         },
+        stockMsg(){
+            if (this.toy.inStock) return 'In Stock'
+            else return 'Sold Out'
+        },
+        SetStockClass(){
+            if (this.toy.inStock) return 'in-stock'
+            else return 'sold-out'
+        }
+        
     },
     components: {
 

@@ -1,0 +1,53 @@
+.toy-list{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.toy-list .toy-preview{
+    border: 1px grey solid;
+    padding: 1rem;
+    width: 17rem;
+    height: 13rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.875rem;
+}
+
+.toy-preview .label{
+    font-size: 0.7rem;
+    margin-inline-end: 0.5em;
+    background-color: #409fff;
+    padding: 0.3rem 1em;
+    border-radius: 2rem;
+    color: white;
+}
+
+.toy-preview h3{
+    text-transform: uppercase;
+}
+
+.stock .sold-out{
+    font-size: 0.7rem;
+    margin-inline-end: 0.5em;
+    background-color: #868788;
+    padding: 0.3rem 1em;
+    border-radius: 2rem;
+    color: white;
+}
+
+.stock .in-stock{
+    font-size: 0.7rem;
+    margin-inline-end: 0.5em;
+    background-color: #67c23b;
+    padding: 0.3rem 1em;
+    border-radius: 2rem;
+    color: white;
+}
+
+.actions{
+    margin-inline-start: 1em;
+}

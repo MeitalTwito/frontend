@@ -34,6 +34,9 @@ export default {
         const regex = new RegExp(filterBy.name, 'i')
         filteredToys = filteredToys.filter(toy => regex.test(toy.name))
       }
+      if (filterBy.inStock){
+        filteredToys = filteredToys.filter(toy => toy.inStock)
+      }
 
       if(filterBy.label.length > 0 && filterBy.label[0] !== ''){
         filteredToys = filteredToys.filter(toy => filterBy.label.includes(...toy.labels))
