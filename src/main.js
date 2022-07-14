@@ -5,8 +5,7 @@ import 'element-plus/dist/index.css'
 
 import router from './router'
 import store from './store'
-import './styles/styles.css'
-
+import "./styles/styles.scss";
 const app = createApp(App)
 
 app.use(router)

@@ -1,9 +1,0 @@
-.toy-filter{
-    display: flex;
-    flex-wrap: wrap;
-    margin-block-end: 1em;
-    gap: 0.5em;
-    background-color: rgb(234, 233, 233);
-    padding: 1em;
-}
-
